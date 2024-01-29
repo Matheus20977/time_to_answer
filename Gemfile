@@ -47,8 +47,9 @@ gem "bootsnap", require: false
 gem "devise"
 gem "rails-i18n"
 gem "tty-spinner"
-gem 'bootstrap', '~> 5.2.3'
+gem 'bootstrap', '~> 4.6.0'
 gem 'jquery-rails'
+gem 'jquery-easing-rails'
 gem "font-awesome-sass", "~> 6.5.1"
 
 

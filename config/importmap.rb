@@ -8,5 +8,5 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 pin "bootstrap", to: "bootstrap.min.js", preload: true
 pin "@popperjs/core", to: "popper.js", preload: true
 pin "jquery", to: "jquery.min.js", preload: true
+pin "jquery-easing", to: "jquery.easing.js", preload: true
 pin "sb-admin-2"
-pin "scripts"
