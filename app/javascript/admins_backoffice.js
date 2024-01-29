@@ -1,2 +1,2 @@
 import "jquery-easing"
-import "sb-admin-2"
+import "admins/sb-admin-2"
