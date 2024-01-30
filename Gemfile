@@ -51,6 +51,7 @@ gem 'bootstrap', '~> 4.6.0'
 gem 'jquery-rails'
 gem 'jquery-easing-rails'
 gem "font-awesome-sass", "~> 6.5.1"
+gem "faker"
 
 
 group :development, :test do
