@@ -52,7 +52,7 @@ namespace :dev do
     file_path = File.join(DEFAULT_FILES_PATH, file_name)
 
     File.open(file_path, "r").each do |line|
-      Subject.create!(description: line.strip)
+      Subject.find_or_create_by!(description: line.strip)
     end
   end
 

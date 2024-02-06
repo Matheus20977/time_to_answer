@@ -7,6 +7,9 @@
       user:
         one: Usuário
         other: Usuários
+      subject:
+        one: Assunto
+        other: Assuntos
     attributes:
       admin:
         id: Código
@@ -18,5 +21,10 @@
       user:
         id: Código
         email: E-mail
+        created_at: Criado em
+        updated_at: Atualizado em
+      subject:
+        id: Código
+        description: Descrição
         created_at: Criado em
         updated_at: Atualizado em
