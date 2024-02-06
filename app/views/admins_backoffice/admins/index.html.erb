@@ -22,9 +22,9 @@
               <i class="fa fa-edit"></i>
             <% end %>
 
-            <button type="button" class="btn btn-danger btn-circle"> 
-              <i class="fa fa-minus"></i> 
-            </button>
+            <%= link_to admins_backoffice_admin_path(admin), data: {turbo_method: :delete, turbo_confirm: "Tem certeza que quer excluir esse administrador?"}, class: "btn btn-danger btn-circle"	do %>
+              <i class="fa fa-minus"></i>
+            <% end %>
           </td>
         </tr>
       <% end %>
