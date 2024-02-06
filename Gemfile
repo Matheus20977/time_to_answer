@@ -52,7 +52,8 @@ gem 'bootstrap', '~> 4.6.0'
 gem 'jquery-easing-rails'
 gem "font-awesome-sass", "~> 6.5.1"
 gem "faker"
-
+gem 'kaminari'
+gem 'kaminari-i18n'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
