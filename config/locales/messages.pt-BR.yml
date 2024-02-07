@@ -1,0 +1,7 @@
+"pt-BR":
+  messages:
+    listing: Listando %{model}
+    confirm: Tem certeza que deseja excluir "%{item}"?
+    editing: Editando %{model}
+    new: Novo %{model}
+    new_f: Nova %{model}

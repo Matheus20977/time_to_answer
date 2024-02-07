@@ -1,4 +1,4 @@
-<h1> <%= "#{action_message} pergunta" %> </h1>
+<h1> <%= action_message %> </h1>
 
 <div class="panel panel-default">
   <div class="panel-body">
@@ -28,7 +28,7 @@
 
           <div class="form-group">
             <%= form.label :subject_id %>
-            <%= form.collection_select(:subject_id, Subject.all, :id, :description, {}, {class:"form-control"}) %>
+            <%= form.collection_select(:subject_id, @subjects, :id, :description, {}, {class:"form-control"}) %>
           </div>
 
           <button type="submit" class="btn btn-outline-secondary">Salvar</button>
