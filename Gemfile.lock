@@ -88,6 +88,7 @@ GEM
       popper_js (>= 1.16.1, < 2)
       sassc-rails (>= 2.0.0)
     builder (3.2.4)
+    cocoon (1.2.15)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -277,6 +278,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   bootstrap (~> 4.6.0)
+  cocoon
   debug
   devise
   faker
