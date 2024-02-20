@@ -61,21 +61,52 @@ namespace :dev do
   task add_answers_and_questions: :environment do
     Subject.all.each do |subject|
       rand(5..10).times do |i|
-        Question.create!(
-          description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
-          subject: subject
-        )
+        params = create_question_params(subject)
+        answers_array = params[:question][:answers_attributes]
+
+        add_answers(answers_array)
+        define_correct_answer(answers_array)
+
+        Question.create!(params[:question])
       end
     end
   end
 
   private
   
-    def show_spinner(start_msg, end_msg = "Concluído!")
-      spinner = TTY::Spinner.new("[:spinner] #{start_msg}...")
-      spinner.auto_spin
-      yield
-      spinner.success("#{end_msg}")
+  def create_question_params(subject = Subject.all.sample)
+    { question: {
+        description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
+        subject: subject,
+        answers_attributes: []
+      }
+    }
+  end
+
+  def create_answer_params
+    { description: Faker::Lorem.sentence, correct: false }
+  end
+
+  def add_answers(answers_array = [])
+    # Cria entre 4 e 5 respostas para cada pergunta
+    rand(4..5).times do |j|
+      answers_array.push(
+        create_answer_params
+      )
     end
+  end
+
+  def define_correct_answer(answers_array = [])
+    # Define, de forma aleatória, uma das respostas como correta
+    selected_index = rand(answers_array.size)
+    answers_array[selected_index][:correct] = true
+  end
+
+  def show_spinner(start_msg, end_msg = "Concluído!")
+    spinner = TTY::Spinner.new("[:spinner] #{start_msg}...")
+    spinner.auto_spin
+    yield
+    spinner.success("#{end_msg}")
+  end
 
 end
