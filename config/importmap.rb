@@ -10,4 +10,5 @@ pin "bootstrap", to: "bootstrap.min.js"
 pin "@popperjs/core", to: "popper.js", preload: true
 pin "jquery-easing", to: "jquery.easing.js", preload: true
 pin "sb-admin-2"
+pin "jquery-bootstrap-growl", to: "jquery.bootstrap-growl.min.js"
 pin "@nathanvda/cocoon", to: "@nathanvda--cocoon.js" # @1.2.14

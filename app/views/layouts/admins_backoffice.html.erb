@@ -139,15 +139,6 @@
 
                 </nav>
                 <!-- End of Topbar -->
-
-                <% flash.each do |type, msg| %>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <%= msg %>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                <% end %>
                 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -202,6 +193,16 @@
         </div>
     </div>
 
+    <% if notice %>
+        <%= javascript_tag do %>
+            $.bootstrapGrowl("<%= notice %>", { 
+                type: 'success' ,
+                align: 'right',
+                allow_dismiss: true,
+                stackup_spacing: 10
+            });
+        <% end %>
+    <% end %>
   </body>
 
 </html>

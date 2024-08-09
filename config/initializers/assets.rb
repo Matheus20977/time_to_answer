@@ -9,4 +9,4 @@ Rails.application.config.assets.version = "1.0"
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
-Rails.application.config.assets.precompile += %w(admin.js admin.css admins_backoffice.js admins_backoffice.scss users_backoffice.js users_backoffice.scss admin_devise.js admin_devise.scss bootstrap.min.js popper.js jquery.js sb-admin-2.js jquery.easing.js site.scss site.js)
+Rails.application.config.assets.precompile += %w(admin.js admin.css admins_backoffice.js admins_backoffice.scss users_backoffice.js users_backoffice.scss admin_devise.js admin_devise.scss bootstrap.min.js popper.js jquery.js sb-admin-2.js jquery.easing.js site.scss site.js jquery.bootstrap-growl.min)
