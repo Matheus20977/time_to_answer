@@ -7,8 +7,7 @@
 </div>
 
 <% @questions.each do |question| %>
-  <%= form_with(url: site_answer_path, local: false, method: :post, data: { turbo: false }) do |form|%>
-    <%= hidden_field_tag :format, :js %>
+  <%= form_with(url: site_answer_path) do |form|%>
     <div class="card mb-3">
       <div class="card-body">
         <h5 class="card-title"><%= question.description %></h5>
