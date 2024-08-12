@@ -68,19 +68,19 @@
     </nav>
 
     <main role="main" class="container">
-      <div class="jumbotron">
-        <% unless params[:term] %>
-          <h3>Últimas perguntas cadastradas...</h3>
-        <% else %>
-          <h3>Resultados para o termo "<%= params[:term] %>"...</h3>
-        <% end %>
-        
-      </div>
+      <% if flash[:success] %>
+        <div class="alert alert-success" role="alert">
+          <%= flash[:success] %>
+        </div>
+      <% elsif flash[:danger] %>
+        <div class="alert alert-danger" role="alert">
+          <%= flash[:danger] %>
+        </div>
+      <% end %>
       
       <%= yield %>
     </main>
 
-    
     <%= javascript_importmap_tags %>
     
     <% if notice %>

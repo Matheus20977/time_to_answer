@@ -1,16 +1,37 @@
+<div class="jumbotron">
+  <% unless params[:term] %>
+    <h3>Últimas perguntas cadastradas...</h3>
+  <% else %>
+    <h3>Resultados para o termo "<%= params[:term] %>"...</h3>
+  <% end %>
+</div>
+
 <% @questions.each do |question| %>
-  <div class="card mb-3">
-    <div class="card-body">
-      <h5 class="card-title"><%= question.description %></h5>
-      <p class="card-text">
-        <ul>
-          <% question.answers.each do |answer| %>
-            <li><%= answer.description %></li>
-          <% end %>
-        </ul>
-      </p>
+  <%= form_with(url: site_answer_path, local: false, method: :post, data: { turbo: false }) do |form|%>
+    <%= hidden_field_tag :format, :js %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title"><%= question.description %></h5>
+        <p class="card-text">
+          <ul>
+            <% question.answers.each do |answer| %>
+              <li style="list-style:none;">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <%= radio_button_tag 'answer_id',  answer.id, class: "form-check-input" %>
+                    <%= answer.description %>
+                  </label>
+                </div>
+              </li>
+            <% end %>
+            <li style="list-style:none;">
+              <%= form.submit "Responder", class: "mt-2 btn btn-outline-secondary", id: "submit_#{question.id}"%>
+            </li>
+          </ul>
+        </p>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
 
 <div class="d-flex justify-content-center">
