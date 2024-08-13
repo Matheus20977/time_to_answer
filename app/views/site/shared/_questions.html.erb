@@ -7,7 +7,7 @@
 </div>
 
 <% @questions.each do |question| %>
-  <%= form_with(url: site_answer_path) do |form|%>
+  <%= form_with(url: site_answer_path, html: {class: "answer-form"}) do |form|%>
     <div class="card mb-3">
       <div class="card-body">
         <h5 class="card-title"><%= question.description %></h5>
@@ -17,7 +17,7 @@
               <li style="list-style:none;">
                 <div class="form-check">
                   <label class="form-check-label">
-                    <%= radio_button_tag 'answer_id',  answer.id, class: "form-check-input" %>
+                    <%= radio_button_tag 'answer_id',  answer.id, class: "form-check-input", data: {correct_answer: answer.correct} %>
                     <%= answer.description %>
                   </label>
                 </div>
@@ -36,3 +36,44 @@
 <div class="d-flex justify-content-center">
     <%= paginate @questions %>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.answer-form').forEach(function(form) {
+      form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Impede o envio do formulário para manipulação via AJAX
+
+        const selectedAnswer = form.querySelector('input[name="answer_id"]:checked');
+        const submitButton = form.querySelector('input[type="submit"]');
+
+        if (selectedAnswer) {
+          const isCorrect = selectedAnswer.dataset.correctAnswer === 'true';
+
+          if (isCorrect) {
+            submitButton.classList.add('btn-success');
+            submitButton.classList.remove('btn-outline-secondary');
+            $.bootstrapGrowl("Parabéns! Sua resposta está correta!", {
+              type: 'success',
+              delay: 2000,
+              allow_dismiss: true
+            });
+          } else {
+            submitButton.classList.add('btn-danger');
+            submitButton.classList.remove('btn-outline-secondary');
+            $.bootstrapGrowl("Que pena! Sua resposta está incorreta!", {
+              type: 'danger',
+              delay: 2000,
+              allow_dismiss: true
+            });
+          }
+        } else {
+          $.bootstrapGrowl("Por favor, selecione uma resposta.", {
+            type: 'warning',
+            delay: 2000,
+            allow_dismiss: true
+          });
+        }
+      });
+    });
+  });
+</script>
