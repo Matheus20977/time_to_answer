@@ -1,16 +1,17 @@
 <div class="jumbotron">
-  <% unless params[:term] %>
-    <h3>Últimas perguntas cadastradas...</h3>
-  <% else %>
-    <h3>Resultados para o termo "<%= params[:term] %>"...</h3>
-  <% end %>
+  <h3> <%= msg_jumbotron %> </h3>
 </div>
 
 <% @questions.each do |question| %>
   <%= form_with(url: site_answer_path, html: {class: "answer-form"}) do |form|%>
     <div class="card mb-3">
       <div class="card-body">
-        <h5 class="card-title"><%= question.description %></h5>
+        <h5 class="card-title">
+          <span class="badge badge-info mr-2">
+            <%= link_to question.subject.description, site_search_subject_path(question.subject_id), class: "text-white" %>
+          </span>
+          <%= question.description %>
+        </h5>
         <p class="card-text">
           <ul>
             <% question.answers.each do |answer| %>
@@ -50,26 +51,31 @@
           const isCorrect = selectedAnswer.dataset.correctAnswer === 'true';
 
           if (isCorrect) {
+            submitButton.classList.remove('btn-danger');
             submitButton.classList.add('btn-success');
             submitButton.classList.remove('btn-outline-secondary');
+            
+
             $.bootstrapGrowl("Parabéns! Sua resposta está correta!", {
               type: 'success',
-              delay: 2000,
+              delay: 3000,
               allow_dismiss: true
             });
           } else {
+            submitButton.classList.remove('btn-success');
             submitButton.classList.add('btn-danger');
             submitButton.classList.remove('btn-outline-secondary');
+
             $.bootstrapGrowl("Que pena! Sua resposta está incorreta!", {
               type: 'danger',
-              delay: 2000,
+              delay: 3000,
               allow_dismiss: true
             });
           }
         } else {
           $.bootstrapGrowl("Por favor, selecione uma resposta.", {
             type: 'warning',
-            delay: 2000,
+            delay: 3000,
             allow_dismiss: true
           });
         }
