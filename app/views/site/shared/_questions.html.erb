@@ -8,7 +8,7 @@
       <div class="card-body">
         <h5 class="card-title">
           <span class="badge badge-info mr-2">
-            <%= link_to question.subject.description, site_search_subject_path(question.subject_id), class: "text-white" %>
+            <%= link_to "#{question.subject.description} (#{question.subject.questions_count})", site_search_subject_path(question.subject_id), class: "text-white" %>
           </span>
           <%= question.description %>
         </h5>
