@@ -1,4 +1,25 @@
 <div class="row justify-content-center mx-auto w-50">
+    <% if flash[:notice] %>
+        <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <%= flash[:notice] %>
+        </div>
+    <% end %>
+    <% if @user.errors.any? %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+            <ul>
+                <% @user.errors.full_messages.each do |message| %>
+                <li> <%= message %> </li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
   <div class="col-xl-10 col-lg-12 col-md-9">
     <div class="row">
         <div class="col-lg-12">
@@ -6,31 +27,31 @@
                 <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Dados do perfil</h1>
                 </div>
-                <form class="user">
+
+                <%= form_with url: users_backoffice_profile_path, model: @user, local: true, class: "user", data: {turbo: false} do |form| %>
+
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                            <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Nome">
+                            <%= form.text_field :first_name, class:"form-control form-control-user", placeholder: "Nome" %>
                         </div>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Sobrenome">
+                            <%= form.text_field :last_name, class:"form-control form-control-user", placeholder: "Sobrenome" %>
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email">
+                        <%= form.email_field :email, class:"form-control form-control-user", readonly: true %>
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Senha">
+                            <%= form.password_field :password, class:"form-control form-control-user", placeholder: "Senha" %>
                         </div>
                         <div class="col-sm-6">
-                            <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Confirmação da senha">
+                            <%= form.password_field :password_confirmation, class:"form-control form-control-user", placeholder: "Confirmação da senha" %>
                         </div>
                     </div>
-                    <a href="login.html" class="btn btn-primary btn-user btn-block">
-                        Editar dados
-                    </a>
-                    
-                </form>
+
+                    <%= form.submit "Atualizar dados", class: "btn btn-primary btn-user btn-block" %>
+                <% end %>
             </div>
         </div>
     </div>

@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :first_name, presence: true, length: { minimum: 3 }, on: :update
+
   def full_name
     [first_name, last_name].join(' ')
   end

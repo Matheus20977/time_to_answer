@@ -33,12 +33,22 @@
             <!-- Sidebar - Brand -->
             <%= link_to users_backoffice_welcome_index_path, class: "sidebar-brand d-flex align-items-center justify-content-center" do %>
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-list-check"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Time to Answer</div>
             <% end %>
 
             <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <div class="my-3 nav-item d-flex flex-column align-items-center">
+                <%= image_tag 'undraw_profile', class:"img-profile rounded-circle w-25 mx-auto" %>
+                <div class="profile-text">
+                    <span> Seja bem-vindo, </span>
+                    <span> <%= current_user.first_name %> </span>                    
+                </div>
+            </div>
+
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
@@ -150,7 +160,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Matheus P. <%= Date.today.year %></span>
                     </div>
                 </div>
             </footer>
